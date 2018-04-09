@@ -1,0 +1,43 @@
+<div  class="text-center">
+        <h3>Database Results</h3>
+
+</div>
+
+
+
+
+<div class="container-fluid"  *ngIf="results">
+        <div class="row">
+
+
+          
+
+          <div class="col-md-12 text-center" style="border:solid;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Operator</th>
+                        <th>Recording Date</th>
+                        <th> Duration</th>
+                        <th> Audio</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of results">
+                            <td>{{x.key}}</td>
+                            <td>{{x.operator}}</td>
+                            <td>{{x.completedAt}} </td>
+                            <td> {{x.callDuration}} Seconds</td>
+                            <td> <a href="{{x.audio}}" target="_blank"> <i class="fa fa-music" aria-hidden="true"></i>  </a></td>
+                            <td> <button class="btn btn-success" (click)="details(x)">DETAILS</button></td>
+                    </tr>
+                  
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

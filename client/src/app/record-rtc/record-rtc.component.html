@@ -1,0 +1,199 @@
+<!-- Adding the controls from demo -->
+
+
+<div class="container text-center">
+    <h1>Call Operator</h1>
+    
+
+    <p>This is a simple two way calling where once the call is ended, audio blob will be generated which will then 
+      be converted to .mp3 then sent for speech to text and trascription will be generated which will then be handled by 
+      natural learning algorithm and sentiment analysis for generating complete result.
+    </p>
+  
+    <div class="row">
+        <div class="col-md-4">
+        <img src="./assets/operator1.jpg" style="width:120px;border-radius:120px;border:solid;border-color:black" (click)="roomId = 'operator1'">
+        <h6>Operator 1 </h6>
+       </div>
+       <div class="col-md-4">
+           <img src="./assets/operator2.png" style="width:120px;border-radius:120px;border:solid;border-color:black" (click)="roomId = 'operator2'">
+           <h6>Operator 2</h6>
+          </div>
+          <div class="col-md-4">
+             <img src="./assets/operator3.jpg"  style="width:120px;border-radius:120px;border:solid;border-color:black" (click)="roomId = 'operator3'">
+             <h6>Operator 3 </h6>
+            </div>
+      </div>
+      <div class="container" *ngIf="!started">
+      <h5 >OPERATOR ID</h5>
+    <div class="form-group">
+        <label for=""></label>
+        <input type="text" class="form-control" [(ngModel)]="roomId" aria-describedby="helpId" placeholder="Edit Room ID">
+        <small id="helpId" class="form-text text-muted">Enter a unique ID </small>
+      </div>
+      <code>{{roomId}}</code>
+    </div>
+
+
+
+<div class=" text-center" style="text-align:center" *ngIf="!started">
+    <button type="button" class="btn btn-success" btn-lg btn-block  (click)="openRoom()">START AUDIO BROADCAST</button>
+   </div> 
+   <span class="text-success" *ngIf="started">Session has been started. Please share this link with others to join your broadcast & see you live in action!<br>
+    <a href="{{url}}/{{roomId}}" target="_blank">{{url}}/{{roomId}}</a>
+      <!-- <button type="button" class="btn btn-info" btn-lg btn-block  (click)="goJoin()" >JOIN</button> -->
+
+   </span>
+   <br>
+
+
+   <div class="row text-center" *ngIf="started">
+      <div class="col-md-12">
+      <h2>LOCAL</h2>
+              <div #local id="local"></div>
+      </div>
+     
+      <!-- <div class="col-md-6">
+      <h2>REMOTE</h2>
+              <div #remote id="remote"></div>
+      </div> -->
+  </div>
+  <div class="row text-center" *ngIf="started">
+    <div class="col-md-12">
+      <small *ngIf="tick"> {{ tick}} Seconds...</small>
+      <button (click)="stopRoom()" class="btn btn-danger text-center">STOP</button>
+    </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- Ending of demo -->
+
+<div class="row text-center">
+  <div class="col-md-12">
+    <h5>PlayBack</h5>
+    <video #video class="video"></video>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button class="btn btn-primary dropx btn-lg" *ngIf="completed" (click)="download()">Process Recording</button>
+  </div>
+</div>
+<div class="row">
+  <!-- <div class="col-md-12">
+    <button md-raised-button color="primary" (click)="startRecording()"> Record </button>
+    <button md-raised-button color="primary"(click) ="stopRecording()"> Stop</button>
+    <button md-raised-button color="primary" (click)="download()"> Download</button>
+  </div> -->
+</div>
+
+
+<div class="container">
+
+  
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    
+<div class="dropzone" 
+dropZone
+(hovered)="toggleHover($event)"
+(dropped)="startUpload($event)"
+[class.hovering]="isHovering">
+
+
+
+
+
+<h3>Audio Analyzer / Processor DropZone</h3>
+<p>Drag and Drop a File</p>
+<label class="text-danger" *ngIf="uploadErr">ERROR: {{uploadErr}}</label>
+
+<div class="file">
+   <label class="file-label">
+
+
+
+   <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+
+
+
+
+     <span class="file-cta">
+       <span class="file-icon">
+         <i class="fa fa-upload"></i>
+       </span>
+       <span class="file-label">
+         or choose a file…
+       </span>
+     </span>
+   </label>
+ </div>
+</div>
+
+
+
+
+<div *ngIf="percentage | async as pct">
+
+<progress class="progress is-info" 
+       [value]="pct" 
+       max="100">        
+</progress>
+
+{{ pct | number }}%
+
+</div>
+
+
+
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+<div *ngIf="(snapshot | async) as snap">
+{{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }} 
+
+
+<div *ngIf="downloadURL | async as url">
+<h3>Step 1: Upload Ccompleted!</h3>
+<!-- <img src="data:image/png;base64,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"><br> -->
+<a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+
+
+
+<div class="progress" style="height: 20px;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">UPLOAD</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Server Processing</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Manage Results</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Completed</div>
+  </div>
+</div> 
+<hr>
+
+
+
+
+
+
+<button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
+<button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
+<button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+
+
+</div>
+</div>

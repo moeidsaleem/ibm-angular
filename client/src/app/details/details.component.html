@@ -1,0 +1,36 @@
+
+
+
+<div class="container-fluid" *ngIf="result">
+  <div class="row">
+    <div class="col-md-12 text-center">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Result </h1>
+      <p class="lead">IBM Watson - Speech to Text -> Natural Learning Algorithms.</p>
+      <hr class="my-2">
+      <p><b>OPERATOR: </b><strong class="text-success lead">{{result?.operator}}</strong></p>
+
+      <p><b>Total Words: </b><strong class="text-warning">{{result?.characters}}</strong></p>
+      <p><b>Language: </b><span class=" text-success">{{result?.language}}</span></p>
+      <p style="border-style:solid;padding:12px;"><b>Transcription:</b> <br> {{result?.transcript}}</p>
+      <p><b>Call Duration:</b> <span> {{result?.callDuration}} Seconds..</span></p>
+      <div>
+        <strong class=" text-success" style="font-size:29px">CATEGORIES</strong>  <br>
+       <ul class="list-group ">
+          <li class="list-group-item active text-danger" style="background:white;" *ngFor="let x of result.categories">{{x.label}}</li>
+       </ul>
+      </div>
+      <br>
+      <p><b>Audio URL: </b> <a href="{{result.audio}}" target="_blank">{{result.audio}}</a></p>
+      <p><b>More info</b>  <br>
+      || Timestamp : <span class="text-warning">{{result?.startedAt}}</span> ||</p>
+      <p class="lead">
+          <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Operator Info</a>
+          <a class="btn btn-danger btn-lg" href="Jumbo action link" role="button">Discard Result</a>
+        </p>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
