@@ -74,24 +74,32 @@ request(req.body.audio).pipe(fs.createWriteStream('musical.wav')).on('finish',  
    console.log(JSON.stringify(response, null, 2));
 
 
-   console.log(response.language);
    let sentiment={};
    let emotions ={};
-    if(response.keywords){
-        sentiment=response.keywords[0].sentiment;
-         emotions= response.keywords[0].emotion ;
+    if(response.keywords.length>0){
 
+        // sentiment=response.keywords[0].sentiment;
+        //  emotions= response.keywords[0].emotion ;
+    }
+    let language;
+    if(!response.language){
+      language ='undetermined';
+
+    }else{ 
+      language =response.language;
+        console.log(language);
 
     }
+
 
     let finalSave ={ 
       transcript: words,
       audio: req.body.audio,
       completedAt: firebase.database.ServerValue.TIMESTAMP,
-      startedAt: req.body.timestamp,
+      // startedAt: req.body.timestamp,
       callDuration: req.body.callDuration,
       operator:req.body.operator,
-      language: response.language,
+      language: language,
       categories: response.categories,
       characters: response.usage.text_characters,
      // sentiment: response.keywords[0].sentiment,
