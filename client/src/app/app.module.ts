@@ -112,6 +112,7 @@ import { DetailsComponent } from './details/details.component';
 
 export class AppModule{
 
+  
 
   
  }

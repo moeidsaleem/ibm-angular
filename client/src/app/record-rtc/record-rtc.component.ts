@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { WebrtcService } from '../webrtc.service';
 import { Router } from '@angular/router';
-import RecordRTC from 'recordrtc/RecordRTC.min';
+import * as RecordRTC from 'recordrtc/RecordRTC.min';
 import { Http } from '@angular/http';
 
 //some firebase stuff
@@ -34,8 +34,8 @@ export class RecordRTCComponent implements AfterViewInit{
   @ViewChild('video') video;
 
   constructor(private storage: AngularFireStorage, private db: AngularFirestore,public http:Http,private router:Router,private rtc:WebrtcService,private elementRef:ElementRef) {
-    this.Whammy = RecordRTC.Whammy;
-    this.WhammyRecorder = RecordRTC.WhammyRecorder;
+    // this.Whammy = RecordRTC.Whammy;
+    // this.WhammyRecorder = RecordRTC.WhammyRecorder;
     this.StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
    
 
@@ -292,7 +292,7 @@ formData.append('blob', recordedBlob);
         audio: respx, 
         operator: this.roomId,
         callDuration: this.tick, // in seconds 
-        timestamp: firebase.database.ServerValue.TIMESTAMP
+        // timestamp: firebase.database
       }
       console.log(reqBody); 
      // Now this is where we generate results... 
