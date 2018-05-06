@@ -5,6 +5,7 @@ import {RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { LoadingModule } from 'ngx-loading';
+import { ChartsModule } from 'ng2-charts';
 
 //primeng
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -91,6 +92,7 @@ import { DetailsComponent } from './details/details.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    ChartsModule,
     RouterModule.forRoot([
       // { 
       //    path:'',

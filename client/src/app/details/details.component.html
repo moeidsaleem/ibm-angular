@@ -16,8 +16,17 @@
       <p style="border-style:solid;padding:12px;"><b>Transcription:</b> <br> {{result?.transcript}}</p>
       <p><b>Call Duration:</b> <span> {{result?.callDuration}} Seconds..</span></p>
       <div>
+
+          <div style="display: block;width:100%;" *ngIf="result && chartData">
+              <canvas baseChart
+                [data]="chartData"
+                [labels]="chartLabels"
+                [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </div>
         <strong class=" text-success" style="font-size:29px">CATEGORIES</strong>  <br>
-       <ul class="list-group ">
+       <ul class="list-group" *ngIf="result.categories">
           <li class="list-group-item active text-danger" style="background:white;" *ngFor="let x of result.categories">{{x.label}}</li>
        </ul>
       </div>

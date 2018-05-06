@@ -10,8 +10,54 @@
         <div class="row">
 
 
-          
+        
+                      <div>
+                          <div style="display: block;width:100%;">
+                                <canvas baseChart
+                                  [data]="pieChartData"
+                                  [labels]="pieChartLabels"
+                                  [chartType]="pieChartType"
+                                  (chartHover)="chartHovered($event)"
+                                  (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                        </div>
+                        <div style="display: block">
+                            <canvas baseChart
+                                    [data]="pieChartData"
+                                    [labels]="barChartLabels"
+                                    [chartType]="barChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                          <div style="display: block">
+                                <canvas baseChart
+                                        [data]="pieChartData"
+                                        [labels]="barChartLabels"
+                                        [chartType]="polarAreaChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                              </div>
+                              <div style="display: block">
+                                    <canvas baseChart
+                                            [data]="pieChartData"
+                                            [labels]="barChartLabels"
+                                            [chartType]="radarChartType"
+                                            (chartHover)="chartHovered($event)"
+                                            (chartClick)="chartClicked($event)"></canvas>
+                                  </div>
+                                  <div style="display: block">
+                                        <canvas baseChart
+                                                [data]="pieChartData"
+                                                [labels]="barChartLabels"
+                                                [chartType]="lineChartType"
+                                                (chartHover)="chartHovered($event)"
+                                                (chartClick)="chartClicked($event)"></canvas>
+                                      </div>
 
+          
+                  
+            </div>
+            <div class="row">
           <div class="col-md-12 text-center" style="border:solid;">
             <table class="table">
                 <thead>
