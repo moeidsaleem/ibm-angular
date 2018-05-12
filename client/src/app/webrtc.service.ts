@@ -18,53 +18,42 @@ export class WebrtcService {
 
 
   join(id){
-    this.connection.session = {
-      audio: true,
-      video: false,
-     // data: true
-  };
-
-  this.connection.mediaConstraints = {
-      audio: true,
-      video: false
-  };
-
-  this.connection.sdpConstraints.mandatory = {
-      OfferToReceiveAudio: true,
-      OfferToReceiveVideo: false
-  };
-
-  this.connection.dontCaptureUserMedia = true;
-    this.connection.join(id);
+   
+this.connection.session = {
+  audio: true,
+  video: false
+};
+this.connection.mediaConstraints = {
+  audio: true,
+  video: false
+};
+this.connection.sdpConstraints.mandatory = {
+  OfferToReceiveAudio: true,
+  OfferToReceiveVideo: false
+};
+//checking up contstraints 
+  this.connection.join(id);
+    
   }
   
 
 
 
   open(id){
-    this.connection.session = {
-      audio: true,
-      video: false,
-      //data: true
-  };
-  this.connection.mediaConstraints = {
-    audio: {
-      mandatory: {
-          echoCancellation: false,
-          googAutoGainControl: false,
-          googNoiseSuppression: false,
-          googHighpassFilter: false
-      },
-      optional: [{
-        googAudioMirroring: false
-      }]
-  },
-      video: false
-  };
-  this.connection.sdpConstraints.mandatory = {
-      OfferToReceiveAudio: true,
-      OfferToReceiveVideo: false
-  };
+ 
+this.connection.session = {
+    audio: true,
+    video: false
+};
+this.connection.mediaConstraints = {
+    audio: true,
+    video: false
+};
+this.connection.sdpConstraints.mandatory = {
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: false
+};
+console.log('openiing with settings');
     this.connection.open(id);
   }
 

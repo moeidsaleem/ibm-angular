@@ -21,7 +21,7 @@ streamx:string;
     this.rtc.connection.onstream = function(event){
       this.x = document.getElementById('local');
       this.y = document.getElementById('remote');
-      this.video
+     // this.video
       
 
   

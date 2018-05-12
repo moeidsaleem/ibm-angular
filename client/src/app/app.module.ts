@@ -94,11 +94,11 @@ import { DetailsComponent } from './details/details.component';
     AngularFireStorageModule,
     ChartsModule,
     RouterModule.forRoot([
-      // { 
-      //    path:'',
-      //    redirectTo:'demo',
-      //    pathMatch: 'full'
-      // }, 
+       { 
+         path:'',
+         redirectTo:'demo',
+         pathMatch: 'full'
+      }, 
       { path: 'home',  component : LandingComponent},
       { path:'features', component:LearnmoreComponent},
       { path:'result', component:ResultComponent},
@@ -106,6 +106,7 @@ import { DetailsComponent } from './details/details.component';
       { path:'demo', component:RecordRTCComponent},
       { path:'about', component:AboutComponent},
       { path:'demo/:id', component:JoinComponent},
+      //login-
    ])
   ],
   providers: [WebrtcService],

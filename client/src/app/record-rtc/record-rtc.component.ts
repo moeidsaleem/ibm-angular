@@ -38,21 +38,22 @@ export class RecordRTCComponent implements AfterViewInit{
     // this.WhammyRecorder = RecordRTC.WhammyRecorder;
     this.StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
    
-
+    let y = document.getElementById('remote');
     this.rtc.connection.onstream = function(event){
-      this.x = document.getElementById('local');
-      this.y = document.getElementById('remote');
+      y = document.getElementById('local');
+      y.appendChild(event.mediaElement);
+
  
 
-      if(event.type === 'remote'){
-        console.error('remote event');
-        this.y.appendChild(event.mediaElement);
-        console.log('remote')
+      // if(event.type === 'remote'){
+      //   // console.error('remote event');
+      //   this.y.appendChild(event.mediaElement);
+      //   console.log('remote')
 
-      }else if( event.type === 'local'){
+      // }else if( event.type === 'local'){
       //  console.log('local event');
-        this.x.appendChild(event.mediaElement);
-      }
+      //   this.x.appendChild(event.mediaElement);
+      // }
     }
 
    }
@@ -335,7 +336,7 @@ formData.append('blob', recordedBlob);
     let timer = TimerObservable.create(2000, 1000);
     this.timerSubscription = timer.subscribe(t => {
       this.tick = t;
-      console.log(this.tick);
+     // console.log(this.tick);
     });
 
   }
