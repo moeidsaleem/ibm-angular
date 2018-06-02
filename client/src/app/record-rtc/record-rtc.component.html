@@ -37,6 +37,9 @@
 
 
 <div class=" text-center" style="text-align:center" *ngIf="!started">
+ 
+    <!-- <input type="text" class="form-control"  aria-describedby="helpId" placeholder="Edit Room ID"> -->
+
     <button type="button" class="btn btn-success" btn-lg btn-block  (click)="openRoom()">START AUDIO BROADCAST</button>
    </div> 
    <span class="text-success" *ngIf="started">Session has been started. Please share this link with others to join your broadcast & see you live in action!<br>
@@ -61,6 +64,15 @@
   <div class="row text-center" *ngIf="started">
     <div class="col-md-12">
       <small *ngIf="tick"> {{ tick}} Seconds...</small>
+      <div class="form-group">
+          <label for="">TYPE</label>
+          <select class="form-control" placeholder="Type" [(ngModel)]="type">
+            <option value="sold">sold</option>
+            <option value="not-sold">not sold</option>
+            <option value="qualify">quality</option>
+            <option value="not-qualify">not qualify </option>
+          </select>
+        </div>
       <button (click)="stopRoom()" class="btn btn-danger text-center">STOP</button>
     </div>
 

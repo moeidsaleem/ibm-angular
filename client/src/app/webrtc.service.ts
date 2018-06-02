@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 declare var RTCMultiConnection: any;
+import {Http } from '@angular/http'
 
 @Injectable()
 export class WebrtcService {
@@ -8,7 +9,7 @@ export class WebrtcService {
   recorder;
   currentResult;
   loading =false
-  constructor(private db:AngularFireDatabase) { 
+  constructor(private db:AngularFireDatabase, private http:Http) { 
     //webRTC 
     this.connection = new RTCMultiConnection();
     this.connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -17,20 +18,24 @@ export class WebrtcService {
   }
 
 
+
+  getSentiments(text){
+    return this.http.post('http://localhost:3000/sentiments', { text: text});
+  }
   join(id){
    
-this.connection.session = {
-  audio: true,
-  video: false
-};
+// this.connection.session = {
+//   audio: true,
+//   video: false
+// };
 this.connection.mediaConstraints = {
   audio: true,
   video: false
 };
-this.connection.sdpConstraints.mandatory = {
-  OfferToReceiveAudio: true,
-  OfferToReceiveVideo: false
-};
+// this.connection.sdpConstraints.mandatory = {
+//   OfferToReceiveAudio: true,
+//   OfferToReceiveVideo: false
+// };
 //checking up contstraints 
   this.connection.join(id);
     

@@ -1,0 +1,35 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <h1>LOGIN</h1>
+
+    </div>
+  
+  <form class="col-md-12" #userForm="ngForm" (submit)="login(userForm.value)">
+  <div class="form-group">
+    <label for=""></label>
+    <input type="email" class="form-control" name="email" placeholder="Email" ngModel required>
+    <small class="form-text text-muted">Enter valid email</small>
+  </div>
+  <div class="form-group">
+    <label for=""></label>
+    <input type="password" class="form-control" name="password" placeholder="Password" ngModel required>
+    <small class="form-text text-muted">Enter password</small>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">LOGIN</button>
+</form>
+
+<br> <br>
+
+<div class="col-md-12 clearfix">
+<div class="alert alert-danger" role="alert" *ngIf="err">
+  <strong>{{err}}</strong>
+</div>
+</div>
+
+
+</div>
+</div>

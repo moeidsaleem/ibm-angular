@@ -47,7 +47,7 @@ public barChartData:any[]
 
   details(x){
     this.rtc.currentResult = x;
-    this.router.navigate(['/result/'+x.key]);
+    this.router.navigate(['/dashboard/result/'+x.key]);
   }
 
 

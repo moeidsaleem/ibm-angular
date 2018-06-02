@@ -15,23 +15,17 @@ message;
 url = 'https://ec2-13-229-128-0.ap-southeast-1.compute.amazonaws.com:8000';
   constructor(private router:Router,private route:ActivatedRoute, private rtc:WebrtcService) { 
     this.roomId =this.route.snapshot.params.id;
-          let y = document.getElementById('remote');
-    this.rtc.connection.onstream = function(event){ 
-        //new change of code
+    this.rtc.connection.onstream = function(event){
+      // let x = document.getElementById('local');
+      let y = document.getElementById('remote');
+      if(event.type === 'remote'){
+        console.error('remote event');
         y.appendChild(event.mediaElement);
 
-
-
-      // // let x = document.getElementById('local');
-      // let y = document.getElementById('remote');
-      // if(event.type === 'remote'){
-      //   console.error('remote event');
-      //   y.appendChild(event.mediaElement);
-
-      // }else if( event.type === 'local'){
-      //   console.log('local event');
-      //  // x.appendChild(event.mediaElement);
-      // }
+      }else if( event.type === 'local'){
+        console.log('local event');
+       // x.appendChild(event.mediaElement);
+      }
 
     }
     console.log(this.roomId);

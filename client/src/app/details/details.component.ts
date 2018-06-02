@@ -10,6 +10,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
 
   result;
+  sentiments;
   // Doughnut
   public chartLabels:string[] 
   public chartData:any[]
@@ -21,9 +22,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
     let labels=[];
     this.result = this.rtc.currentResult;
    console.log(this.result);
-  let cat =this.result.categories;
+
+  // let cat =this.result.categories;
 
 
+  
     if(this.result.categories.length>0){
       console.log(`categories found`);
       for(let i=0;i<=this.result.categories.length;i++){

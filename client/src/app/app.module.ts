@@ -48,14 +48,15 @@ var config = {
 ----Dashboard
    -- Host Meeting 
    -- Join Meeting 
-
-
 */
-
 import { RecordRTCComponent } from './record-rtc/record-rtc.component';
 import { FileSizePipe } from './file-size.pipe';
 import { DropZoneDirective } from './drop-zone.directive';
 import { DetailsComponent } from './details/details.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { HeaderComponent } from './header/header.component';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -73,7 +74,9 @@ import { DetailsComponent } from './details/details.component';
     ResultComponent,
     FileSizePipe,
     DropZoneDirective,
-    DetailsComponent
+    DetailsComponent,
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -96,20 +99,24 @@ import { DetailsComponent } from './details/details.component';
     RouterModule.forRoot([
        { 
          path:'',
-         redirectTo:'demo',
+         redirectTo:'dashboard/demo',
          pathMatch: 'full'
       }, 
-      { path: 'home',  component : LandingComponent},
+      { path:'landing', component:LandingComponent},
+      { path:'login', component:LoginComponent},
+      { path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard],children:[
       { path:'features', component:LearnmoreComponent},
       { path:'result', component:ResultComponent},
       { path:'result/:id', component:DetailsComponent},
       { path:'demo', component:RecordRTCComponent},
       { path:'about', component:AboutComponent},
-      { path:'demo/:id', component:JoinComponent},
+      { path:'demo/:id', component:JoinComponent}
+      ]},
+      
       //login-
    ])
   ],
-  providers: [WebrtcService],
+  providers: [WebrtcService,AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 

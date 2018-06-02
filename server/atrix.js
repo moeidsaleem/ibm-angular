@@ -105,12 +105,20 @@ request(req.body.audio).pipe(fs.createWriteStream('musical.wav')).on('finish',  
      // sentiment: response.keywords[0].sentiment,
       //emotion:  response.keywords[0].emotion
     }
+
+    try{
+
+ 
    //add the response to firebase result 
    firebase.database().ref().child('result').push().set(finalSave).then(r=>{
     respx.json(finalSave)
    }, err=>{
      console.log(err);
    })
+
+  } catch(err){
+    console.log(err);
+  }
 
     
 

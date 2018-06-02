@@ -3,6 +3,8 @@ import { WebrtcService } from './webrtc.service';
 
 import {AccordionModule} from 'primeng/primeng';     //accordion and accordion tab
 import {MenuItem} from 'primeng/primeng';            //api
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth.service';
 
 
 @Component({
@@ -15,13 +17,16 @@ export class AppComponent implements AfterViewInit,OnInit  {
   @ViewChild('local') local;
   @ViewChild('remote') remote;
   
-  constructor(private rtc:WebrtcService,private elementRef:ElementRef){
+  constructor(private rtc:WebrtcService,private elementRef:ElementRef, private authService:AuthService){
     // var local = this.elementRef.nativeElement.querySelector('#local');
     
 
   }
   title = 'app';
   roomId='123';
+
+
+  userId;
  
  
   socket:any = null;

@@ -67,6 +67,7 @@
                         <th>Recording Date</th>
                         <th> Duration</th>
                         <th> Audio</th>
+                        <th> Result</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
@@ -77,6 +78,7 @@
                             <td>{{x.completedAt}} </td>
                             <td> {{x.callDuration}} Seconds</td>
                             <td> <a href="{{x.audio}}" target="_blank"> <i class="fa fa-music" aria-hidden="true"></i>  </a></td>
+                            <td> {{x?.type || '---'}}</td>
                             <td> <button class="btn btn-success" (click)="details(x)">DETAILS</button></td>
                     </tr>
                   
