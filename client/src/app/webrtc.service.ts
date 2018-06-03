@@ -16,6 +16,34 @@ export class WebrtcService {
     // this.connection.socketMessageEvent = 'audio-plus-screen-sharing-demo';
 
   }
+  
+
+
+//add problem to system>app> solvedProblems, errorProblems 
+addProblem(operator, problem){
+  let n = new Date();
+  if(problem === false){
+    return this.db.list('system/solvedProblems').push({
+      operator: operator,
+      problem:false,
+      date: n.getUTCDate()
+    })
+
+
+  }else if(problem === true){
+    return this.db.list('system/errorProblems').push({
+      operator: operator,
+      problem:true,
+      date: n.getUTCDate()
+    })
+
+
+  }
+}
+
+getProblems(type){
+  return this.db.list('system/'+type).valueChanges();
+}
 
 
 

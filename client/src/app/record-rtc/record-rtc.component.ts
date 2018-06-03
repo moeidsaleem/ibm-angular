@@ -292,6 +292,7 @@ formData.append('blob', recordedBlob);
       let reqBody = {
         audio: respx, 
         operator: this.roomId,
+        type: this.type,
         callDuration: this.tick, // in seconds 
         // timestamp: firebase.database
       }
@@ -323,6 +324,13 @@ formData.append('blob', recordedBlob);
 
 
   
+
+  type='';
+
+  onchange(event){
+    console.log(event.target.value);
+    this.type = event.target.value;
+  }
 
 
   //TIMER :::::::::::::::

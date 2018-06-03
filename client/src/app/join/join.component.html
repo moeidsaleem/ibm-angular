@@ -18,7 +18,10 @@
                     <a class="btn btn-danger btn-lg" href="https://localhost:4200/demo" role="button">LEAVE</a>
                   </p>
     </div>
-    
+    <div class="col-md-12" *ngIf="showProblemButton">
+        <button class="btn btn-success" (click)="setProblem(false)">No Problem</button>
+        <button class="btn btn-danger" (click)="setProblem(true)">Problem Found</button>
+      </div>
     </div>
     
   </div>

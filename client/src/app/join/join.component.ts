@@ -42,4 +42,12 @@ url = 'https://ec2-13-229-128-0.ap-southeast-1.compute.amazonaws.com:8000';
   join(){
     this.rtc.join(this.roomId);
   }
+
+
+  showProblemButton = true;
+  setProblem(problem){
+    this.rtc.addProblem( this.roomId, problem).then(resp=>{
+      this.showProblemButton = false;
+    })
+  }
 }

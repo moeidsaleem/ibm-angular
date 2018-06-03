@@ -1,3 +1,36 @@
+
+<section class="container text-center">
+    <h1>STATISTICS</h1>
+
+    <div class="row" >
+            <div class="col-md-3" style="border-style: solid;border-color:#1a97fe3f"  *ngIf="solvedProblems && errorProblems">
+                    <span style="font-size:40px;">{{solvedProblems.length + errorProblems.length}}</span>
+                    <br>
+                    <span> Total Problems</span>
+                </div>
+            <div class="col-md-3" style="border-style: solid;border-color:#1a97fe3f" *ngIf="solvedProblems">
+                <span class="text-success" style="font-size:40px;">{{solvedProblems.length}}</span>
+                <br>
+                <span> Problem Solved</span>
+            </div>
+            <div class="col-md-3" style="border-style: solid;border-color:#1a97fe3f" *ngIf="errorProblems">
+                    <span class="text-danger" style="font-size:40px;">{{errorProblems.length}}</span>
+                    <br>
+                    <span> Problem Errors</span>
+                </div>
+                <div class="col-md-3" style="border-style: solid;border-color:#1a97fe3f" *ngIf="results">
+                        <span style="font-size:40px;">{{results.length}}</span>
+                        <br>
+                        <span> Total Calls</span>
+                    </div>
+                   
+            
+        </div>
+</section>
+
+<br>
+
+
 <div  class="text-center">
         <h3>Database Results</h3>
 
@@ -78,7 +111,7 @@
                             <td>{{x.completedAt}} </td>
                             <td> {{x.callDuration}} Seconds</td>
                             <td> <a href="{{x.audio}}" target="_blank"> <i class="fa fa-music" aria-hidden="true"></i>  </a></td>
-                            <td> {{x?.type || '---'}}</td>
+                            <td> {{x.type || '---'}}</td>
                             <td> <button class="btn btn-success" (click)="details(x)">DETAILS</button></td>
                     </tr>
                   

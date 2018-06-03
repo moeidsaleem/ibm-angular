@@ -23,7 +23,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.result = this.rtc.currentResult;
    console.log(this.result);
 
-  // let cat =this.result.categories;
+  let cat =this.result.categories;
+
+  //get sentiments 
+  // this.rtc
 
 
   

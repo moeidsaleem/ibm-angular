@@ -13,6 +13,29 @@ public barChartData:any[]
 
   constructor(private router:Router,private rtc:WebrtcService) { }
 
+
+
+ system;
+errorProblems;
+solvedProblems;
+
+
+  getStats(){
+    this.rtc.getProblems('errorProblems').subscribe(resp=>{
+      console.log(resp);
+      this.errorProblems = resp;
+      // this.solvedProblems = data.
+
+    });
+    this.rtc.getProblems('solvedProblems').subscribe(resp=>{
+      console.log(resp);
+      this.solvedProblems = resp;
+      // this.solvedProblems = data.
+
+    });
+  }
+
+
   ngOnInit() {
     this.rtc.getResults().map(actions => {
       return actions.map(action => ({ key: action.key, ...action.payload.val() }));
@@ -41,7 +64,9 @@ public barChartData:any[]
         this.pieChartData =data;
 
       this.barChartLabels = ['operator 1', 'operator 2','operator 3']
-    })
+    });
+
+    this.getStats();
   }
 
 
