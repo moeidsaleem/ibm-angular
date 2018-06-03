@@ -9,6 +9,7 @@ var base64 = require('file-base64');
 var firebase = require('firebase');
 let classfier = require('./classifier')
 var request = require('request');
+var sentimentAnalysis = require('sentiment-analysis');
 var config = {
   apiKey: "AIzaSyAI7aXrdQ3Y_nJAtfbgNMNbupiUjAru3JQ",
   authDomain: "pak-currency-converter.firebaseapp.com",
@@ -102,6 +103,8 @@ request(req.body.audio).pipe(fs.createWriteStream('musical.wav')).on('finish',  
       language: language,
       categories: response.categories,
       characters: response.usage.text_characters,
+      type: req.body.type,
+      sentimentScore: sentimentAnalysis(words)
      // sentiment: response.keywords[0].sentiment,
       //emotion:  response.keywords[0].emotion
     }
@@ -111,7 +114,7 @@ request(req.body.audio).pipe(fs.createWriteStream('musical.wav')).on('finish',  
  
    //add the response to firebase result 
    firebase.database().ref().child('result').push().set(finalSave).then(r=>{
-    respx.json(finalSave)
+    respx.json(finalSave);
    }, err=>{
      console.log(err);
    })
